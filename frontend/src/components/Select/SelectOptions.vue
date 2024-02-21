@@ -23,6 +23,8 @@ onClickOutside(listContainerRef, () => {
 @import "@/assets/variables";
 
 .selectOptionsContainer {
+  z-index: 1;
+
   position: absolute;
   top: 2.5rem;
 
