@@ -13,7 +13,7 @@ type SelectRootProps<Value = unknown> = {
 };
 
 const props = withDefaults(defineProps<SelectRootProps>(), {
-  disabled: true,
+  disabled: false,
 });
 
 const emit = defineEmits(["update:modelValue"]);
