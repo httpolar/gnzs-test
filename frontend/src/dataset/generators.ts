@@ -1,6 +1,6 @@
 import { FIRST_NAMES_F, FIRST_NAMES_M, LAST_NAMES_F, LAST_NAMES_M } from "@/dataset/names";
 import { takeRandomElement } from "@/lib/take-random-element";
-import { RANDOM_WORDS } from '@/dataset/words'
+import { RANDOM_WORDS } from "@/dataset/words";
 
 export function generateRandomName() {
   let firstName: string;
@@ -21,5 +21,5 @@ export function generateCompanyName() {
   const word = takeRandomElement(RANDOM_WORDS);
   const form = takeRandomElement(["LLC", "GmbH", "Ltd."]);
 
-  return `${word} ${form}`
+  return `${word} ${form}`;
 }
