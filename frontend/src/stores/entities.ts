@@ -16,11 +16,44 @@ export const useEntitiesStore = defineStore("entities", () => {
     companies.value = json;
   }
 
+  async function addCompany(name: string) {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({ name });
+
+    const options = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+    };
+
+    await fetch(`${import.meta.env.VITE_API_BASE_URL}/companies`, options);
+  }
+
   async function getContacts() {
     const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/contacts`, { method: "GET" });
     const json: Contact[] = await res.json();
 
     contacts.value = json;
+  }
+
+  async function addContact(firstName: string, lastName: string) {
+    const headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+      firstName,
+      lastName,
+    });
+
+    const options = {
+      method: "POST",
+      headers: headers,
+      body: raw,
+    };
+
+    await fetch(`${import.meta.env.VITE_API_BASE_URL}/contacts`, options);
   }
 
   async function getLeads() {
@@ -30,5 +63,30 @@ export const useEntitiesStore = defineStore("entities", () => {
     leads.value = json;
   }
 
-  return { companies, contacts, leads, getCompanies, getContacts, getLeads };
+  async function addLead(price: number) {
+    const headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({ price });
+
+    const options = {
+      method: "POST",
+      headers: headers,
+      body: raw,
+    };
+
+    await fetch(`${import.meta.env.VITE_API_BASE_URL}/leads`, options);
+  }
+
+  return {
+    companies,
+    contacts,
+    leads,
+    getCompanies,
+    addCompany,
+    getContacts,
+    addContact,
+    getLeads,
+    addLead,
+  };
 });
