@@ -7,9 +7,6 @@
         <RouterLink to="/" :class="$style.navLink" :active-class="$style.navLinkActive">
           Главная
         </RouterLink>
-        <RouterLink to="/about" :class="$style.navLink" :active-class="$style.navLinkActive">
-          About
-        </RouterLink>
       </nav>
     </div>
   </header>
