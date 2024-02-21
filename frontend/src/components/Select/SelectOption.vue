@@ -1,17 +1,15 @@
 <script setup lang="ts">
 import { inject } from "vue";
-import { setSelectedItemKey, selectedItemKey } from "@/components/Select/injection";
+import { setSelectedItemKey } from "@/components/Select/injection";
 import IconCheck from "@/components/icons/IconCheck.vue";
 
-type SelectOptionProps = {
-  value: string | null;
+type SelectOptionProps <T = unknown> = {
+  value: T | null;
+  isSelected?: boolean;
 };
 
-const props = withDefaults(defineProps<SelectOptionProps>(), {
-  value: null,
-});
+const props = defineProps<SelectOptionProps>();
 
-const selectedItem = inject(selectedItemKey);
 const setSelectedItem = inject(setSelectedItemKey);
 
 function handleOptionClick() {
@@ -27,7 +25,7 @@ function handleOptionClick() {
       <slot />
     </span>
 
-    <IconCheck v-show="props.value === selectedItem" :class="$style.optionSelectedIcon" />
+    <IconCheck v-show="isSelected" :class="$style.optionSelectedIcon" />
   </li>
 </template>
 

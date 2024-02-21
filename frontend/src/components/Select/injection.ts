@@ -1,7 +1,7 @@
 import type { InjectionKey, Ref } from "vue";
 
 type TriggerClickHandler = () => void;
-type OptionClickHandler = (value: string | null | undefined) => void;
+type OptionClickHandler <T = unknown> = (value: T | null | undefined) => void;
 
 export const handleTriggerClickKey = Symbol() as InjectionKey<TriggerClickHandler>;
 export const isOpenKey = Symbol() as InjectionKey<Ref<boolean>>;
