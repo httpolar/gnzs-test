@@ -31,6 +31,7 @@ onClickOutside(listContainerRef, () => {
   display: flex;
   flex-direction: column;
 
+  box-sizing: border-box;
   padding: 0.25rem;
 
   border-style: solid;
