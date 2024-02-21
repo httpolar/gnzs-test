@@ -13,6 +13,7 @@ import { generateCompanyName, generateRandomName } from "@/dataset/generators";
 import CompanyCard from "@/components/CompanyCard.vue";
 import LeadCard from "@/components/LeadCard.vue";
 import { randomNumber } from "@/lib/random-number";
+import { useThrottleFn } from "@vueuse/core";
 
 const entitiesStore = useEntitiesStore();
 const { contacts, companies, leads } = storeToRefs(entitiesStore);
@@ -56,7 +57,7 @@ async function handleCreateLead() {
   isFetching.value = false;
 }
 
-async function handleCreateSomething() {
+const handleCreateSomething = useThrottleFn(async () => {
   if (selected.value.value === "contact") {
     await handleCreateContact();
   }
@@ -68,7 +69,7 @@ async function handleCreateSomething() {
   if (selected.value.value === "lead") {
     await handleCreateLead();
   }
-}
+}, 500);
 </script>
 
 <template>
