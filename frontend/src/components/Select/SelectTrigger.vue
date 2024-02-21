@@ -1,22 +1,17 @@
 <script setup lang="ts">
-import { computed, inject } from "vue";
-import { selectedItemKey, handleTriggerClickKey } from "@/components/Select/injection";
+import { inject } from "vue";
+import { handleTriggerClickKey } from "@/components/Select/injection";
 import IconChevronUpDown from '@/components/icons/IconChevronUpDown.vue'
 
 type SelectTriggerProps = {
-  placeholder: string;
+  placeholder?: string;
   disabled?: boolean;
 };
 
-const props = defineProps<SelectTriggerProps>();
+defineProps<SelectTriggerProps>();
 const emit = defineEmits(["click"]);
 
-const selectedItem = inject(selectedItemKey);
 const handleTriggerClick = inject(handleTriggerClickKey);
-
-const displayedPlaceholder = computed(() => {
-  return selectedItem?.value ?? props.placeholder;
-});
 
 function handleUnderlyingButtonClick() {
   emit("click");
@@ -34,7 +29,7 @@ function handleUnderlyingButtonClick() {
     :disabled="disabled"
   >
     <span :class="$style.selectTriggerPlaceholder">
-      {{ displayedPlaceholder }}
+      <slot />
     </span>
 
     <IconChevronUpDown :class="$style.icon" />
